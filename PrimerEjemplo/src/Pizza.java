@@ -52,6 +52,7 @@ public class Pizza {
     public void setPrecio(int precio) {
         this.precio = precio;
     }
+    
     // métodos customer
     public void preparar()
     {
@@ -63,4 +64,11 @@ public class Pizza {
         System.out.println("Pizza calentandose");
     }
 
+    public String datos() 
+    {
+        return  "Nombre   : " + this.nombre +
+                "\nTamaño   : " + this.tamano +
+                "\nMasa     : " + this.masa + 
+                "\nPrecio   : " + this.precio;
+    }
 }
