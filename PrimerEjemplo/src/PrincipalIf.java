@@ -42,8 +42,7 @@ public class PrincipalIf {
             System.out.println("Es un numero grande");
         }
         
-        int edad = 0;
-        
+        int edad = 0;        
         Scanner leerTeclado = new Scanner(System.in);
         System.out.print("Ingrese su edad: ");
         edad = leerTeclado.nextInt();
