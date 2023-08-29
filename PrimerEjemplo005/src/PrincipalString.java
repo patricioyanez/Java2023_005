@@ -23,10 +23,16 @@ public class PrincipalString {
         System.out.println("   Este texto tiene espacios    " );
         System.out.println("   Este texto tiene espacios    ".trim()  );
         
-        
+        System.out.println("Buscar posición de caracter " + "abc de".indexOf(" "));
         System.out.println("Hola Mundo".substring(0, 4) );
         
-        
+        //Ejercicio: Mostrar el primer nombre de:
+        // Juan Carlos
+        // Ana Maria
+        // Patricio Alejandro
+        String nombre = "Patricio Alejandro";
+        System.out.println("**** Ejercicio  ******");
+        System.out.println(nombre.substring(0, nombre.indexOf(" ")));
     }   
     
 }
