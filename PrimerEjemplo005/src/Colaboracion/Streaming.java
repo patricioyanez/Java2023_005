@@ -31,9 +31,15 @@ public class Streaming {
     }
 
     public String imprimir() {
-        return cancion.imprimir() +
-                "Segundos Reproducidos=" + segundosReproducidos;
+        return "****** Titulo en reproducción ******\n" +
+                cancion.imprimir() +
+                "\nSegundos Reproducidos=" + segundosReproducidos;
     }
+    public int calcularSegundosFaltantes()
+    {
+        return cancion.getDuracion() - this.segundosReproducidos;
+    }
+    
     // https://www.youtube.com/watch?v=0zWsbZ8aqhw&list=PLk2rufbc0DMq2lsPolk3ZmFSSvmGkUw19
     
     
