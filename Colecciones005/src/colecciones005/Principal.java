@@ -41,6 +41,38 @@ public class Principal {
             System.out.println("Nombre: " + nombre);
         }
         
+        // metódos adicionales
+        
+        int indice = nombres.indexOf("Sanji");
+        
+        if(indice >=0)
+            System.out.println("Existe");
+        else
+            System.out.println("No existe");
+        
+        boolean existe = nombres.contains("Robin");
+        
+        if(existe)
+            System.out.println("contains = Existe");
+        else
+            System.out.println("contains = No existe");
+     
+        boolean fueEliminado = nombres.remove("Sanji");        
+        if(fueEliminado)
+            System.out.println("Fue eliminado");
+        else
+            System.out.println("No eliminado");
+        
+        System.out.println("Cantidad actual: " + nombres.size());
+        
+        String nombreEliminado = nombres.remove(2);
+        System.out.println("Personaje Eliminado: " + nombreEliminado);
+        
+        // elimina todo los elementos de la coleccion
+        System.out.println("Clear");
+        System.out.println("(size)Cantidad actual: " + nombres.size());
+        nombres.clear();        
+        System.out.println("(size)Cantidad actual: " + nombres.size());
         
     }
     
