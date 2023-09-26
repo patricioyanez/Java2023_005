@@ -1,5 +1,5 @@
 
-package colecciones005;
+
 
 import java.util.ArrayList;
 
@@ -73,6 +73,8 @@ public class Principal {
         System.out.println("(size)Cantidad actual: " + nombres.size());
         nombres.clear();        
         System.out.println("(size)Cantidad actual: " + nombres.size());
+		
+        // ppt 2.1.1 parte 5
         
     }
     
