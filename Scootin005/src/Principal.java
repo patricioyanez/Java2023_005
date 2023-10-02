@@ -38,11 +38,11 @@ public class Principal {
         scootin.listarEmpleado();
         
         //Ejercicio 3
-        // crear un menu con la opciones:
-        // ingresar empleado, buscar si existe, 
-        // listar todo, 
-        //listar por puesto (seleccionar que puesto), 
-        // eliminar por rut y salir
+        // Crear un menu con la opciones:
+        // - Ingresar empleado, buscar si existe, 
+        // - Listar todo, 
+        // - Listar por puesto (seleccionar que puesto), 
+        // - Eliminar por rut y salir.
 
         
     }
