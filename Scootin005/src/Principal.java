@@ -37,7 +37,13 @@ public class Principal {
         System.out.println("**** Listado de empleados *****");
         scootin.listarEmpleado();
         
-        
+        //Ejercicio 3
+        // crear un menu con la opciones:
+        // ingresar empleado, buscar si existe, 
+        // listar todo, 
+        //listar por puesto (seleccionar que puesto), 
+        // eliminar por rut y salir
+
         
     }
 

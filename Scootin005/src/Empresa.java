@@ -42,4 +42,11 @@ public class Empresa {
         }
         return false;
     }
+    public void listarEmpleadoPorPuesto(int codigo)
+    {
+        for (Empleado empleado : empleados) {
+            if(empleado.getPuesto().getCodigo() == codigo)
+                System.out.println(empleado.imprimir());
+        }
+    }
 }
