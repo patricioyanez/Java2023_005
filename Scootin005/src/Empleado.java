@@ -76,9 +76,9 @@ public class Empleado {
         return "\nRut         : " + rut + 
                "\nNombre      : " + nombre + 
                "\nGenero      : " + genero + 
-               "\nAnioServicio: " + anioServicio + 
+               "\nAño Servicio: " + anioServicio + 
                "\nEdad        : " + edad + 
-               "\nDatos del Puesto\n" + puesto.imprimir();
+               "\nDatos del Puesto:\n" + puesto.imprimir();
     }
     
     
