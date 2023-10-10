@@ -53,4 +53,9 @@ public class Comida {
     public String imprimir() {
         return "Comida{" + "nombre=" + nombre + ", calorias=" + calorias + ", grasa=" + grasa + ", sodio=" + sodio + '}';
     }
+    
+    public String tipoComida()
+    {
+        return "Comida en general";
+    }
 }
