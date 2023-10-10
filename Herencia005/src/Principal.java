@@ -32,6 +32,8 @@ public class Principal {
         System.out.println(comoCocinar1);
         System.out.println(comoCocinar2);
         System.out.println(comoCocinar3);
-        
+                // Realizar actividad 
+        // 2.2.2 Actividad Formativa Herencia
+        // disponible en el AVA
     }
 }
