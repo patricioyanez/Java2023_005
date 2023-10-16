@@ -38,8 +38,7 @@ public class Principal {
             
             if(animal1.getClass() == Pez.class)
                 ++peces;
-        }
-        
+        }        
         System.out.println("Cantidad de peces:" + peces);
     }
 }
