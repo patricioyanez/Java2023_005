@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import Modelo.Marca;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author patri
@@ -50,10 +53,20 @@ public class FrmMarca extends javax.swing.JFrame {
         chkHabilitado.setText("Habilitado");
 
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnListar.setText("Listar");
 
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
 
@@ -141,6 +154,36 @@ public class FrmMarca extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        txtNombre.setText(""); // limpia el text
+        chkHabilitado.setSelected(false);
+        
+        txtNombre.requestFocus(); // dar el foco al text
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+        // validar
+        if(txtNombre.getText().trim().length() < 1)
+        {
+            JOptionPane.showMessageDialog(this, "Falta el nombre");
+            txtNombre.requestFocus();
+        }
+        else
+        {   // guardar a la base de datos si están toda la información
+            Marca marca = new Marca();
+            marca.setNombre(txtNombre.getText().trim().toUpperCase());
+            marca.setHabilitado(chkHabilitado.isSelected());
+            JOptionPane.showMessageDialog(this, "Datos Guardados");
+            
+            // Ejercicios:
+            // Crear los elementos para administrar Cargo.
+            // Los campos son id, nombre, habilitado.
+        }
+        
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
