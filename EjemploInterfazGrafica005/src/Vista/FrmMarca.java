@@ -179,7 +179,7 @@ public class FrmMarca extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Datos Guardados");
             
             // Ejercicios:
-            // Crear los elementos para administrar Cargo.
+            // Crear los modelo y formulario para administrar Cargo.
             // Los campos son id, nombre, habilitado.
         }
         
