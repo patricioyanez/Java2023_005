@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.ControladorMarca;
 import Modelo.Marca;
 import javax.swing.JOptionPane;
 
@@ -176,7 +177,18 @@ public class FrmMarca extends javax.swing.JFrame {
             Marca marca = new Marca();
             marca.setNombre(txtNombre.getText().trim().toUpperCase());
             marca.setHabilitado(chkHabilitado.isSelected());
-            JOptionPane.showMessageDialog(this, "Datos Guardados");
+            
+            ControladorMarca cm = new ControladorMarca();
+            boolean resultado = cm.agregar(marca);
+            if(resultado)
+            {
+                JOptionPane.showMessageDialog(this, "Datos Guardados");
+                btnLimpiar.doClick();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Error en la operación");
+            }
             
             // Ejercicios:
             // Crear los modelo y formulario para administrar Cargo.
