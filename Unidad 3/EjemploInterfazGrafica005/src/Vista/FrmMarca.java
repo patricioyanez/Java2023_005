@@ -7,14 +7,16 @@ package Vista;
 
 import Controlador.ControladorMarca;
 import Modelo.Marca;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author patri
  */
 public class FrmMarca extends javax.swing.JFrame {
-
+    private Marca marca = new Marca();
     /**
      * Creates new form FrmMarca
      */
@@ -63,6 +65,11 @@ public class FrmMarca extends javax.swing.JFrame {
         });
 
         btnListar.setText("Listar");
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarActionPerformed(evt);
+            }
+        });
 
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -72,6 +79,11 @@ public class FrmMarca extends javax.swing.JFrame {
         });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -94,6 +106,11 @@ public class FrmMarca extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tabla);
@@ -160,7 +177,7 @@ public class FrmMarca extends javax.swing.JFrame {
         // TODO add your handling code here:
         txtNombre.setText(""); // limpia el text
         chkHabilitado.setSelected(false);
-        
+        marca.limpiar();
         txtNombre.requestFocus(); // dar el foco al text
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
@@ -174,16 +191,23 @@ public class FrmMarca extends javax.swing.JFrame {
         }
         else
         {   // guardar a la base de datos si están toda la información
-            Marca marca = new Marca();
+            //Marca marca = new Marca();
             marca.setNombre(txtNombre.getText().trim().toUpperCase());
             marca.setHabilitado(chkHabilitado.isSelected());
             
             ControladorMarca cm = new ControladorMarca();
-            boolean resultado = cm.agregar(marca);
+            
+            boolean resultado =  false;
+            if(marca.getId() > 0)
+                resultado = cm.actualizar(marca);
+            else            
+                resultado = cm.agregar(marca);
+            
             if(resultado)
             {
                 JOptionPane.showMessageDialog(this, "Datos Guardados");
                 btnLimpiar.doClick();
+                btnListar.doClick();
             }
             else
             {
@@ -196,6 +220,59 @@ public class FrmMarca extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+        // TODO add your handling code here:
+        ControladorMarca cm = new ControladorMarca();
+        ArrayList<Marca> listado = cm.buscarTodos();
+        
+        // obtener las filas de la tabla y limpiar
+        DefaultTableModel dtm = (DefaultTableModel)tabla.getModel();
+        dtm.setRowCount(0);
+        
+        // agregar las filas a la tabla
+        for(Marca m: listado)
+            dtm.addRow(new Object[]{m.getId(), 
+                                    m.getNombre(), 
+                                    m.isHabilitado() });
+        
+    }//GEN-LAST:event_btnListarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        if(marca.getId() < 1)
+        {
+            JOptionPane.showMessageDialog(this, "Debe Seleccionar una marca");
+            return;
+        }
+        
+        ControladorMarca cm = new ControladorMarca();
+        boolean fueEliminado = cm.eliminar(marca.getId());
+        if(fueEliminado)
+        {
+            JOptionPane.showMessageDialog(this, "La información fue eliminada");            
+            btnLimpiar.doClick();
+            btnListar.doClick();
+        }
+        else
+            JOptionPane.showMessageDialog(this, "Error en la solicitud");            
+        
+        
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        // TODO add your handling code here:
+        // obtiene la fila seleccionada por el usuario
+        int fila = tabla.getSelectedRow();
+        
+        // obtener datos de la fila seleccionada
+        int id = 0;
+        id = Integer.parseInt(tabla.getValueAt(fila, 0).toString());
+        marca.setId(id);// id necesario para modificar o eliminar
+        txtNombre.setText(tabla.getValueAt(fila, 1).toString());
+        chkHabilitado.setSelected(tabla.getValueAt(fila, 2).
+                                toString().equals("true"));
+    }//GEN-LAST:event_tablaMouseClicked
 
     /**
      * @param args the command line arguments
