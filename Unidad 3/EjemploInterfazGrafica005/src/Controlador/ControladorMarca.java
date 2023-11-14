@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class ControladorMarca {
     
@@ -138,5 +139,39 @@ public class ControladorMarca {
             System.out.println("Error: " + ex.getMessage());
         }
         return listado;
+    }
+    
+    public javax.swing.DefaultComboBoxModel llenarCombo()
+    {
+        // EL COMBO MOSTRARÁ LO QUE DEVUELVE EL METODO TOSTRING() DE MARCA
+        //
+        Vector listado = new Vector();
+        listado.add(new Marca(0, "Seleccionar", true));
+        try
+        {
+            Conexion con = new Conexion();
+            Connection cx = con.obtenerConexion();
+            String sql = "SELECT ID, NOMBRE, HABILITADO FROM MARCA WHERE HABILITADO = 1 ORDER BY NOMBRE";
+            PreparedStatement st;
+            st = cx.prepareStatement(sql);
+         
+            ResultSet rs = st.executeQuery();
+            
+            while(rs.next())
+            {
+                Marca marca = new Marca();
+                marca.setId(rs.getInt("ID") );
+                marca.setNombre(rs.getString("NOMBRE"));
+                marca.setHabilitado(rs.getBoolean("HABILITADO"));
+                listado.add(marca);
+            }
+            st.close();
+            cx.close();
+        }
+        catch(SQLException ex)
+        {
+            System.out.println("Error: " + ex.getMessage());
+        }
+        return new javax.swing.DefaultComboBoxModel(listado);
     }
 }
